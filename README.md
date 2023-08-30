@@ -1,4 +1,4 @@
-# IGA-ADS
+# IGA-ADS-RM
 
 [![Build status](https://github.com/marcinlos/iga-ads/actions/workflows/build.yml/badge.svg)](https://github.com/marcinlos/iga-ads/actions?query=workflow%3ABuild+branch%3Adevelop)
 [![Codecov](https://codecov.io/gh/marcinlos/iga-ads/branch/develop/graph/badge.svg?token=rkZgDGLoTy)](https://codecov.io/gh/marcinlos/iga-ads)
@@ -8,8 +8,9 @@
 [![Language](https://img.shields.io/badge/C%2B%2B-17-b.svg?logo=cplusplus)](https://isocpp.org/)
 [![Latest release](https://img.shields.io/github/v/release/marcinlos/iga-ads)](https://github.com/marcinlos/iga-ads/releases)
 
-IGA-ADS is a C++ framework designed to facilitate creating parallel numerical simulations for
-time-dependent and stationary PDEs using isogeometric finite element method.
+IGA-ADS-RM is a C++ framework designed to facilitate creating parallel numerical simulations for
+time-dependent and stationary PDEs using isogeometric finite element method and residual
+minimization based stabilization.
 
 ## Building
 
@@ -75,11 +76,11 @@ Options are specified as `-D option=value`, e.g.  `cmake -S . -B build -D ADS_US
 
 ## Using the library
 
-There are three primary ways to use IGA-ADS library in your CMake project.
+There are three primary ways to use IGA-ADS-RM library in your CMake project.
 
 #### Importing installed package
 
-If IGA-ADS has been built and installed as described [above](#compilation),
+If IGA-ADS-RM has been built and installed as described [above](#compilation),
 it can be imported using `find_package` command.
 To import and use the library with some example application,
 add the following to you `CMakeLists.txt`:
@@ -100,14 +101,14 @@ cmake -D ADS_ROOT=/path/to/install/dir ...
 
 #### Including as a subdirectory
 
-In this method, the entire IGA-ADS directory is added as a subdirectory to the project using it.
+In this method, the entire IGA-ADS-RM directory is added as a subdirectory to the project using it.
 One easy way to do it is by using git
 [submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules):
 ```bash
-git submodule add https://github.com/marcinlos/iga-ads ads
+git submodule add https://github.com/marcinlos/iga-ads-rm ads
 ```
 The `ads` directory then needs to be added in `CMakeLists.txt` using `add_subdirectory`.
-We can also set [build options](#build-options) for IGA-ADS:
+We can also set [build options](#build-options) for IGA-ADS-RM:
 ```cmake
 set(ADS_USE_GALOIS ON)
 set(ADS_USE_MUMPS ON)
@@ -122,12 +123,12 @@ target_link_libraries(example PRIVATE ADS::ADS)
 #### Using `FetchContent`
 
 Using [`FetchContent`](https://cmake.org/cmake/help/latest/module/FetchContent.html)
-we can automatically download IGA-ADS to the build directory.
+we can automatically download IGA-ADS-RM to the build directory.
 ```cmake
 include(FetchContent)
 
 FetchContent_Declare(ADS
-  GIT_REPOSITORY https://github.com/marcinlos/iga-ads
+  GIT_REPOSITORY https://github.com/marcinlos/iga-ads-rm
   GIT_TAG develop
 )
 
